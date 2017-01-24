@@ -52,6 +52,19 @@
 			background: linear-gradient( 45deg, #A4D4F3, #083D5E );
 		}
 
+		button {
+			width: 75px;
+			height: 75px;
+			margin:2%;
+
+
+		}
+
+		#butt {
+			width:100%;
+			text-align: center;
+		}
+
 
 
 
@@ -59,10 +72,14 @@
 </head>
 <body>
 	<iframe width="0.5%" height="4" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/42123348&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+
+	<table id="grille"></table>
+
+	<div id="butt"><button id="gauche"><</button><button id="chute">V</button><button id="tourne">@</button><button id="droite">></button></div>
+	
 </body>
 <script>
 (function() {
-	document.getElementsByTagName('body')[0].innerHTML+='<table id="grille"></table>';
 	var largeur = 10;
 	var hauteur = 22;
 	var score = 0;
@@ -93,6 +110,7 @@
 			break;
 		}
 	}
+
 
 	function getRandomInt(min, max) { //Nombre entier aléatoire entre min et max-1
 		min = Math.ceil(min);
@@ -152,6 +170,7 @@
 			
 		}
 		forme.centre[0]++;
+		maj_grille(grille, forme);
 	}
 
 	function gauche(grille, forme){
@@ -164,6 +183,7 @@
 			forme.centre[1]--;
 
 		}
+		maj_grille(grille, forme);
 	}
 
 	function droite(grille, forme){
@@ -174,7 +194,8 @@
 				
 			}
 			forme.centre[1]++;	
-		}	
+		}
+		maj_grille(grille, forme);
 	}
 
 	function controle(grille){
@@ -374,6 +395,8 @@
 				forme.bloc[3][1]=ord-2;
 			}
 		}
+
+		maj_grille(grille, forme);
 	}
 
 	
@@ -384,22 +407,27 @@
 		var forme = NaN;
 		var posit = 0;
 
+		
 
+		document.getElementById("gauche").onclick=function(){gauche(grille, forme)};
+		document.getElementById("droite").onclick=function(){droite(grille, forme)};
+		document.getElementById("tourne").onclick=function(){tourne(grille, forme)};
+		document.getElementById("chute").onclick=function(){tombe(grille, forme)};
+
+		
 		document.addEventListener('keydown', function(event) {
             if(event.keyCode == 37) // droite
             {
             	gauche(grille, forme);
-            	maj_grille(grille, forme);
             }
             if(event.keyCode == 39) // droite
             {
             	droite(grille, forme);
-            	maj_grille(grille, forme);
             }
             if(event.keyCode == 38) // droite
             {
             	tourne(grille, forme);
-            	maj_grille(grille, forme);
+            	
 
             }
             if(event.keyCode == 40)
