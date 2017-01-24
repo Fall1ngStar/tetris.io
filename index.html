@@ -8,8 +8,8 @@
 			background-image: url("https://images-assets.nasa.gov/image/hubble-observes-one-of-a-kind-star-nicknamed-nasty_17754652960_o/hubble-observes-one-of-a-kind-star-nicknamed-nasty_17754652960_o~large.jpg");
 		}
 		.vide {
-			width: 18px;
-			height: 18px;
+			width: 20px;
+			height: 20px;
 			float: left;
 		}
 
@@ -442,7 +442,7 @@
 			} else {
 				fige(grille, forme);
 				if (controle_perdre(grille)){
-					document.getElementsByTagName('body')[0].innerHTML = "<p>Défaite !! Score : "+score+"!</p> <button onclick='window.location.reload(false)'>Rejouer ?</button>";
+					document.getElementById('grille')[0].innerHTML = "<p>Défaite !! Score : "+score+"!</p> <button onclick='window.location.reload(false)'>Rejouer ?</button>";
 					return;
 
 				}
