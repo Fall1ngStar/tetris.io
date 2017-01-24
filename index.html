@@ -52,14 +52,14 @@
 			border: 3px #FEF7D6 solid;
 			border-collapse: collapse;
 			margin:auto;
-			margin-top: 10%;
 			background: linear-gradient( 45deg, #A4D4F3, #083D5E );
+			text-align: center;
 		}
 
 		button {
 			width: 100px;
 			height: 100px;
-			margin:2%;
+			margin:5%;
 			font-size: 20px;
 		}
 
@@ -68,6 +68,10 @@
 			text-align: center;
 		}
 
+		#defeat{
+			font-size:2em;
+			margin: 10%;
+		}
 
 	</style>
 </head>
@@ -78,9 +82,10 @@
 
 	<div id="butt">
 		<button id="gauche"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+		<button id="droite"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 		<button id="chute"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
 		<button id="tourne"><i class="fa fa-repeat" aria-hidden="true"></i></button>
-		<button id="droite"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+		
 	</div>
 	
 </body>
@@ -476,7 +481,7 @@
 			} else {
 				fige(grille, forme);
 				if (controle_perdre(grille)){
-					document.getElementById('grille').innerHTML = "<p>Défaite !! Score : "+score+"!</p> <button onclick='window.location.reload(false)'>Rejouer ?</button>";
+					document.getElementById('grille').innerHTML = "<p id='defeat'>Défaite !!</p><p id='defeat'> Score : "+score+"!</p> <button onclick='window.location.reload(false)'>Rejouer ?</button>";
 					return;
 
 				}
