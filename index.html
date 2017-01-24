@@ -3,6 +3,10 @@
 <head>
 	<title>Tetris</title>
 	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0" />
+
+	<link rel="stylesheet" href="font-awesome-4.7.0\css\font-awesome.min.css">
+
 	<style type="text/css">
 		body{
 			background-image: url("https://images-assets.nasa.gov/image/hubble-observes-one-of-a-kind-star-nicknamed-nasty_17754652960_o/hubble-observes-one-of-a-kind-star-nicknamed-nasty_17754652960_o~large.jpg");
@@ -56,16 +60,13 @@
 			width: 100px;
 			height: 100px;
 			margin:2%;
-
-
+			font-size: 20px;
 		}
 
 		#butt {
 			width:100%;
 			text-align: center;
 		}
-
-
 
 
 	</style>
@@ -75,7 +76,12 @@
 
 	<table id="grille"></table>
 
-	<div id="butt"><button id="gauche"><</button><button id="chute">V</button><button id="tourne">@</button><button id="droite">></button></div>
+	<div id="butt">
+		<button id="gauche"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+		<button id="chute"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+		<button id="tourne"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+		<button id="droite"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+	</div>
 	
 </body>
 <script>
@@ -412,7 +418,7 @@
 		document.getElementById("gauche").onclick=function(){gauche(grille, forme)};
 		document.getElementById("droite").onclick=function(){droite(grille, forme)};
 		document.getElementById("tourne").onclick=function(){tourne(grille, forme)};
-		document.getElementById("chute").onclick=function(){tombe(grille, forme)};
+		document.getElementById("chute").onclick=function(){if (controle(grille)) {tombe(grille, forme);maj_grille(grille, forme);}};
 
 		
 		document.addEventListener('keydown', function(event) {
@@ -470,7 +476,7 @@
 			} else {
 				fige(grille, forme);
 				if (controle_perdre(grille)){
-					document.getElementById('grille')[0].innerHTML = "<p>Défaite !! Score : "+score+"!</p> <button onclick='window.location.reload(false)'>Rejouer ?</button>";
+					document.getElementById('grille').innerHTML = "<p>Défaite !! Score : "+score+"!</p> <button onclick='window.location.reload(false)'>Rejouer ?</button>";
 					return;
 
 				}
