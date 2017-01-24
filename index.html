@@ -10,17 +10,22 @@
 	<style type="text/css">
 		body{
 			background-image: url("https://images-assets.nasa.gov/image/hubble-observes-one-of-a-kind-star-nicknamed-nasty_17754652960_o/hubble-observes-one-of-a-kind-star-nicknamed-nasty_17754652960_o~large.jpg");
+			text-align: center;
 		}
+
+		
+
+
 		.vide {
-			width: 20px;
-			height: 20px;
+			width: 30px;
+			height: 30px;
 			float: left;
 		}
 
 		.plein {
 			background-color: black;
-			width: 20px;
-			height: 20px;
+			width: 30px;
+			height: 30px;
 			
 		}
 
@@ -60,7 +65,7 @@
 			width: 70px;
 			height: 70px;
 			font-size: 20px;
-			margin-top: 1%;
+			margin-top: 3%;
 		}
 
 		#butt {
@@ -73,23 +78,59 @@
 			margin: 10%;
 		}
 
+		#score {
+			border: 3px #FEF7D6 solid;
+			border-collapse: collapse;
+			margin:auto;
+			background: linear-gradient( 45deg, #A4D4F3, #083D5E );
+			text-align: center;
+			width: 50px;
+		}
+
+		@media screen and (max-width:450px) {
+			.vide {
+				width: 20px;
+				height: 20px;
+				float: left;
+			}
+
+			.plein {
+			background-color: black;
+			width: 20px;
+			height: 20px;
+			
+			}
+
+			button {
+				width: 50px;
+				height: 50px;
+				font-size: 20px;
+				margin-top: 3%;
+			}
+		}
+
 	</style>
 </head>
 <body>
 	<iframe width="0.5%" height="4" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/42123348&amp;auto_play=true&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+		<div id="score"></div>
 
-	<table id="grille"></table>
+		<table id="grille"></table>
 
-	<div id="butt">
-		<button id="gauche"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
-		<button id="droite"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-		<button id="chute"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-		<button id="tourne"><i class="fa fa-repeat" aria-hidden="true"></i></button>
-		
-	</div>
-	
+		<div id="butt">
+			<button id="gauche"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+			<button id="droite"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+			<button id="chute"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+			<button id="tourne"><i class="fa fa-repeat" aria-hidden="true"></i></button>
+			
+		</div>
+
+
 </body>
+
 <script>
+
+
 (function() {
 	var largeur = 10;
 	var hauteur = 22;
@@ -180,6 +221,8 @@
 			forme.bloc[i][0]++;
 			
 		}
+		score++;
+		document.getElementById('score').innerHTML = score;
 		forme.centre[0]++;
 		maj_grille(grille, forme);
 	}
@@ -270,7 +313,6 @@
 			console.log('ici');
 			grille[k][j]=0;
 		}
-		score ++;
 
 
 
@@ -308,6 +350,9 @@
 				grille[i][j]=grille_temp[i][j];
 			}
 		}
+
+		score += 250 ;
+		document.getElementById('score').innerHTML = score;
 	}
 	
 	function controle_perdre(grille){
@@ -413,6 +458,7 @@
 	
 
 	window.onload = function() {
+		document.getElementById('score').innerHTML = score;
 		
 		var grille = [''];
 		var forme = NaN;
@@ -473,7 +519,7 @@
 		maj_grille(grille, forme);
 
 		function animate() {
-			
+
 
 			if (controle(grille)) {
 				tombe(grille, forme);
